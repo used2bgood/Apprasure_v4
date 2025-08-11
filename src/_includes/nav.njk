@@ -1,7 +1,24 @@
-<nav id="site-nav" hidden>
-  <a href="/" class="{% if page.url == '/' %}active{% endif %}">Home</a>
-  <a href="/services/" class="{% if page.url == '/services/' %}active{% endif %}">Services</a>
-  <a href="/testimonials/" class="{% if page.url == '/testimonials/' %}active{% endif %}">Testimonials</a>
-  <a href="https://contact.apprasure.com" target="_blank" rel="noopener">Contact</a>
+<nav class="site-nav" aria-label="Main">
+  <div class="container">
+    <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false" id="navToggle">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+
+    {% set items = [
+      { href: '/',               label: 'Home' },
+      { href: '/why-appraisal/', label: 'Why Appraisal?' },
+      { href: '/services/',      label: 'Services' },
+      { href: '/testimonials/',  label: 'Testimonials' },
+      { href: '/contact/',       label: 'Contact' }
+    ] %}
+
+    <div id="nav-links" class="nav-links">
+      {% for it in items %}
+        <a href="{{ it.href }}" class="{% if page.url == it.href %}active{% endif %}">{{ it.label }}</a>
+      {% endfor %}
+    </div>
   </div>
 </nav>

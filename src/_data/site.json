@@ -1,5 +1,11 @@
 {
-  "title": "AppraSure",
-  "description": "Clear, defensible, and faster insurance appraisal documentation.",
-  "url": "https://www.apprasure.com"
+  "title": "AppraSure | Appraisal Services",
+  "description": "Clear resolutions for complex disputes.",
+  "url": "https://apprasure-website.pages.dev",
+  "logo": "/assets/apple-touch-icon.png",
+  "email": "info@apprasure.com",
+  "phone": "(469) 905-0505",
+  "location": "Lewisville, TX",
+  "linkedin": "#",
+  "instagram": "#"
 }

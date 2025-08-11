@@ -1,279 +1,156 @@
-/* ===========================
-   AppraSure – Full Stylesheet
-   =========================== */
+---
+layout: layout.njk
+title: AppraSure | Home
+permalink: "/"
+---
 
-/* ---------- Theme Tokens ---------- */
-:root{
-  --primary:#3a4b42;                 /* deep green */
-  --accent:#e1f2e3;                  /* pale mint */
-  --text-dark:#2e2e2e;
-  --text:#1c1c1c;
-  --header-gradient:linear-gradient(to bottom,#2c2c2c,#1f1f1f);
-  --header-height:120px;             /* used for sticky offset */
-  --radius:14px;
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>Fast, Fair, Finally.</h1>
+    <p>We help reach a fair settlement—without the confusion and delay.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://contact.apprasure.com" target="_blank" rel="noopener">Start Your Case</a>
+      <a class="btn btn-secondary" href="#how-it-works">How Appraisal Works</a>
+    </div>
+  </div>
+</section>
 
-  /* spacing scale */
-  --space-1:.25rem;
-  --space-2:.5rem;
-  --space-3:.75rem;
-  --space-4:1rem;
-  --space-5:1.5rem;
-  --space-6:2rem;
-  --space-7:3rem;
-}
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="section">
+  <div class="container">
+    <h2 class="section-title">How the Appraisal Process Works</h2>
+    <p class="lead">When price is the dispute, appraisal provides a neutral, structured path to resolution.</p>
 
-/* ---------- Base / Reset-ish ---------- */
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:'Segoe UI',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
-  line-height:1.6;
-  background-image:url('/assets/floorplan-background.png');
-  background-repeat:repeat;
-  background-size:600px;
-}
-img{max-width:100%;height:auto;display:block}
-a{color:inherit}
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-index">1</div>
+        <h3>Trigger</h3>
+        <p>You (the insured) invoke appraisal per the policy. Each side selects a qualified appraiser.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-index">2</div>
+        <h3>Appraisers</h3>
+        <p>Appraisers inspect, compare scopes, and exchange positions using evidence and current pricing.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-index">3</div>
+        <p>An umpire is selected if needed. Two of three signatures set the binding amount of loss.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ---------- Layout primitives ---------- */
-.container{
-  width:100%;
-  max-width:1100px;
-  margin-inline:auto;
-  padding-inline:var(--space-4);
-}
-.section{
-  padding-block:var(--space-7);
-}
-.section-title{
-  margin:0 0 var(--space-3);
-  font-weight:700;
-  color:var(--text-dark);
-  font-size:clamp(1.5rem,2vw + 1rem,2rem);
-}
-.lead{
-  margin:0 0 var(--space-4);
-  color:#3a3a3a;
-}
+<!-- EVIDENCE-BASED SCOPES -->
+<section id="evidence" class="section">
+  <div class="container evidence">
+    <div class="evidence-media">
+      {% image "/assets/xact-comparison.png", "Xact comparison", "(max-width: 900px) 92vw, 680px" %}
+    </div>
 
-/* ---------- Accessibility ---------- */
-.skip-link{
-  position:absolute;
-  left:-999px;
-  top:auto;
-  width:1px;height:1px;overflow:hidden;
-}
-.skip-link:focus{
-  position:fixed;left:1rem;top:1rem;z-index:10000;
-  width:auto;height:auto;padding:.5rem .75rem;
-  background:#fff;color:var(--primary);
-  border-radius:.5rem;box-shadow:0 4px 14px rgba(0,0,0,.18);
-}
+    <div class="evidence-copy surface">
+      <span class="eyebrow">Evidence-Based Scopes</span>
+      <h2 class="section-title">Clear, defensible, settlement-ready</h2>
+      <p class="lead">Scopes grounded in restorative construction and current pricing—not fluff.</p>
 
-/* Keep in-page anchors from hiding under sticky nav */
-section[id],h2[id],h3[id]{scroll-margin-top:calc(var(--header-height) + 16px)}
+      <ul class="list-check">
+        <li>Line items tied to photos, codes, and manufacturer guidance</li>
+        <li>Current assemblies and pricing (Xactimate) with notes where needed</li>
+        <li>Mitigation → moisture mapping → build-back continuity</li>
+        <li>Organized for fast carrier review and easier agreement</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-/* ---------- Header ---------- */
-header{
-  padding:var(--space-2) var(--space-2);
-  text-align:center;
-  background:var(--header-gradient);
-  box-shadow:0 4px 10px rgba(0,0,0,.4);
-}
-header img{
-  width:min(36vw,360px);
-  margin:0 auto var(--space-2);
-  height:auto;
-}
-header p{
-  margin:.25rem 0 0;
-  color:#e9e9e9;
-  letter-spacing:.02em;
-}
+<!-- ESTIMATE CLARITY -->
+<section id="estimate-clarity" class="section">
+  <div class="container">
+    <h2 class="section-title">Estimate Clarity</h2>
+    <p class="lead">Transparent quantities, clear assumptions, and no padding—built the way adjusters and contractors work.</p>
 
-/* ---------- Nav (sticky) ---------- */
-.site-nav{
-  position:sticky;top:0;z-index:999;
-  background:var(--header-gradient);
-  box-shadow:0 4px 10px rgba(0,0,0,.3);
-}
-.site-nav .nav-toggle{
-  display:none;background:transparent;border:0;padding:.75rem;margin-left:.5rem
-}
-.nav-toggle-bar{
-  display:block;width:24px;height:2px;margin:5px 0;background:#fff;border-radius:2px
-}
-.site-nav .nav-links{
-  display:flex;gap:1rem;align-items:center;
-  padding:.5rem 1rem;
-}
-.site-nav a{
-  color:#e9e9e9;text-decoration:none;padding:.5rem .25rem;
-}
-.site-nav a.active{border-bottom:2px solid var(--accent)}
-@media (max-width:768px){
-  .site-nav{display:grid;grid-template-columns:auto 1fr;align-items:center}
-  .site-nav .nav-toggle{display:inline-block}
-  .site-nav .nav-links{
-    grid-column:1 / -1;display:none;flex-direction:column;align-items:flex-start;
-    padding:.5rem 1rem 1rem;background:var(--header-gradient)
-  }
-  .site-nav .nav-links.open{display:flex}
-}
+    <div class="media-block">
+      {% image "/assets/claim_paperwork_and_estimate.png", "Estimate clarity mockup", "(max-width: 900px) 92vw, 680px" %}
+    </div>
 
-/* ---------- Buttons ---------- */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-  padding:.65rem 1rem;border-radius:999px;border:2px solid transparent;
-  text-decoration:none;font-weight:600;cursor:pointer;transition:.2s ease;
-}
-.btn:focus{outline:2px solid #0002;outline-offset:2px}
-.btn-primary{
-  background:var(--primary);color:#fff;border-color:var(--primary);
-}
-.btn-primary:hover{filter:brightness(1.05)}
-.btn-secondary{
-  background:transparent;color:#fff;border-color:#ffffff66;
-}
-.btn-secondary:hover{background:#ffffff1a}
+    <ul class="bullets">
+      <li>Readable structure with sections, assemblies, and supportive notes</li>
+      <li>Photos and annotations that match line items</li>
+      <li>Assumptions and exclusions called out up front</li>
+    </ul>
+  </div>
+</section>
 
-/* ---------- Hero ---------- */
-.hero{
-  background:linear-gradient(180deg,#00000055,#00000020), var(--header-gradient);
-  color:#fff;
-  padding-block:clamp(3rem,7vw,6rem);
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked</h2>
+
+    <details>
+      <summary>Is appraisal the same as a public adjuster?</summary>
+      <p>No—appraisal determines the amount of loss. It doesn’t decide coverage. A public adjuster represents you on coverage and settlement; appraisal is a dispute-resolution clause focused on price.</p>
+    </details>
+
+    <details>
+      <summary>How long does it take?</summary>
+      <p>It varies by complexity and scheduling. The structured, deadline-driven process typically moves claims faster than open-ended negotiations.</p>
+    </details>
+
+    <details>
+      <summary>What does AppraSure do for me?</summary>
+      <p>We bridge construction expertise and insurance requirements—producing clear, defensible documentation that stands up to scrutiny and speeds resolution.</p>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section">
+  <div class="container cta">
+    <h2 class="section-title">Ready to move forward?</h2>
+    <p class="lead">We’ll review your file and help you set a straighter path to a fair outcome.</p>
+    <a class="btn btn-primary" href="https://contact.apprasure.com" target="_blank" rel="noopener">Start Your Case</a>
+  </div>
+</section>
+
+/* --- Header (match live site) --- */
+.site-header {
+  background:#fff;
+  border-bottom:1px solid var(--border, #e2e8f0);
 }
-.hero-inner{
-  text-align:center;
-}
-.hero h1{
-  margin:0 0 .5rem;font-size:clamp(2rem,3vw + 1rem,3rem)
-}
-.hero-cta{
-  display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;
-  margin-top:var(--space-3);
+.site-header .container { text-align:center; padding-block:1.25rem; }
+.site-header .brand img { display:block; margin-inline:auto; height:auto; }
+.site-header .tagline { margin:.35rem 0 0; color:var(--text-muted, #475569); }
+
+/* --- Nav (light, sticky) --- */
+.site-nav { position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--border, #e2e8f0); }
+.site-nav .container { display:flex; align-items:center; gap:1rem; min-height:56px; }
+.site-nav .nav-links { display:flex; gap:1rem; margin-left:auto; }
+.site-nav .nav-links a { padding:.5rem .6rem; border-radius:8px; color:#0f172a; text-decoration:none; }
+.site-nav .nav-links a:hover { background:#f8fafc; }
+.site-nav .nav-links a.active { background:#e8f5ee; color:#23443a; }
+.nav-toggle { display:none; background:transparent; border:0; padding:.5rem; }
+.nav-toggle-bar { display:block; width:24px; height:2px; margin:5px 0; background:#0f172a; border-radius:2px; }
+@media (max-width: 768px){
+  .site-nav .container { flex-wrap:wrap; }
+  .nav-toggle { display:inline-block; }
+  .site-nav .nav-links { display:none; width:100%; padding:0 0 .5rem; }
+  .site-nav .nav-links.open { display:flex; flex-direction:column; align-items:flex-start; }
 }
 
-/* ---------- Steps (How it works) ---------- */
-.steps{
-  display:grid;gap:var(--space-4);
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  margin-top:var(--space-5);
+/* --- Footer (match live site sections) --- */
+.site-footer { background:#fff; border-top:1px solid var(--border, #e2e8f0); margin-top:2rem; }
+.site-footer .footer-grid {
+  display:grid; gap:1.25rem; align-items:start;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  padding-block:1.75rem;
 }
-.step-card{
-  position:relative;background:#fff;border-radius:var(--radius);
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  padding:var(--space-5) var(--space-4) var(--space-4);
-  border:1px solid #0000000e;
-}
-.step-index{
-  position:absolute;inset:auto auto calc(100% - 22px) var(--space-4);
-  width:44px;height:44px;border-radius:50%;
-  display:grid;place-items:center;
-  background:var(--accent);color:var(--primary);font-weight:700;
-  box-shadow:0 4px 12px rgba(0,0,0,.12);
+.site-footer .footer-brand img { display:block; height:auto; }
+.site-footer .tagline { color:var(--text-muted, #475569); margin:.35rem 0 0; }
+.site-footer h4 { margin:.25rem 0 .5rem; font-size:1rem; }
+.site-footer a { color:#0f172a; text-decoration:none; }
+.site-footer a:hover { text-decoration:underline; }
+.site-footer .footer-meta { border-top:1px solid var(--border, #e2e8f0); padding-block:1rem; text-align:center; color:#475569; }
+@media (max-width: 900px){
+  .site-footer .footer-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- Evidence-Based Scopes (redesigned) ---------- */
-#evidence .evidence{
-  display:grid;gap:2rem;align-items:start;
-}
-#evidence .evidence-media picture,
-#evidence .evidence-media img{
-  display:block;
-  max-width:680px;width:100%;height:auto;
-  border-radius:var(--radius);
-  box-shadow:0 14px 40px rgba(0,0,0,.12);
-  margin-inline:auto;
-}
-.surface{
-  background:rgba(255,255,255,.9);
-  backdrop-filter:saturate(120%) blur(6px);
-  -webkit-backdrop-filter:saturate(120%) blur(6px);
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.10);
-  padding:1.25rem 1.25rem 1.5rem;
-  border:1px solid #0000000e;
-}
-.eyebrow{
-  display:inline-block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--primary);background:var(--accent);
-  padding:.25rem .5rem;border-radius:999px;margin-bottom:.5rem;
-}
-.list-check{
-  list-style:none;margin:0;padding:0;display:grid;gap:.6rem;
-}
-.list-check li{
-  position:relative;padding-left:1.9rem;line-height:1.45;color:#2c2c2c;
-}
-.list-check li::before{
-  content:"";position:absolute;left:0;top:.15rem;width:1.1rem;height:1.1rem;border-radius:50%;
-  background:var(--accent);box-shadow:inset 0 0 0 2px rgba(58,75,66,.15);
-}
-.list-check li::after{
-  content:"";position:absolute;left:.28rem;top:.42rem;width:.55rem;height:.3rem;
-  border-left:2px solid var(--primary);border-bottom:2px solid var(--primary);
-  transform:rotate(-45deg);
-}
-@media (min-width:900px){
-  #evidence .evidence{
-    grid-template-columns:1.1fr 1fr;gap:2.25rem;
-  }
-  #evidence .evidence-copy{align-self:center}
-}
-/* tighter section spacing here if desired */
-#evidence.section{padding-block:2.5rem}
-
-/* ---------- Estimate Clarity ---------- */
-#estimate-clarity .media-block{
-  margin:var(--space-4) 0;
-}
-#estimate-clarity .media-block picture,
-#estimate-clarity .media-block img{
-  display:block;max-width:680px;width:100%;height:auto;
-  border-radius:var(--radius);
-  box-shadow:0 14px 40px rgba(0,0,0,.12);
-  margin-inline:auto;
-}
-#estimate-clarity .bullets{
-  list-style:none;margin:var(--space-4) 0 0;padding:0;display:grid;gap:.6rem;
-}
-#estimate-clarity .bullets li{
-  position:relative;padding-left:1.25rem;
-}
-#estimate-clarity .bullets li::before{
-  content:"•";position:absolute;left:0;top:.05rem;color:var(--primary);font-weight:700;
-}
-
-/* ---------- FAQ ---------- */
-#faq details{
-  border:1px solid #00000012;border-radius:var(--radius);
-  background:#fff;margin-bottom:var(--space-3);
-  box-shadow:0 10px 24px rgba(0,0,0,.06);
-}
-#faq summary{
-  cursor:pointer;padding:var(--space-4);font-weight:600;list-style:none;
-}
-#faq summary::-webkit-details-marker{display:none}
-#faq details[open] summary{border-bottom:1px solid #00000010}
-#faq details > p{padding:0 var(--space-4) var(--space-4);margin:0;color:#333}
-
-/* ---------- CTA ---------- */
-.cta{
-  text-align:center;
-}
-.cta .btn{margin-top:var(--space-3)}
-
-/* ---------- Utilities ---------- */
-.round{border-radius:var(--radius)}
-.shadow-sm{box-shadow:0 6px 18px rgba(0,0,0,.08)}
-.shadow-md{box-shadow:0 12px 30px rgba(0,0,0,.12)}
-
-/* ---------- Print tweaks ---------- */
-@media print{
-  .site-nav,.hero{display:none!important}
-  .section{padding-block:1rem}
-  a[href]:after{content:" (" attr(href) ")";font-size:.9em}
-}

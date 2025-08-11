@@ -1,33 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="{{ description or site.description }}">
+  <meta charset="utf-8" />
   <title>{{ title or site.title }}</title>
-  <link rel="stylesheet" href="/assets/styles.css" />
-
-  <!-- SEO & Social -->
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{ description or site.description }}">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="canonical" href="{{ (site.url or '') + (page.url or '/') }}">
   <meta property="og:title" content="{{ title or site.title }}">
-  <meta property="og:description" content="Clear, defensible, and faster insurance appraisal documentation.">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ (site.url or '') + (page.url or '/') }}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="og:image" content="{{ site.url }}/assets/claim_paperwork_and_estimate.png">
-  <meta name="twitter:card" content="summary_large_image">
-
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
   {% include "header.njk" %}
   {% include "nav.njk" %}
-  <main id="main" class="container">
+
+  <main id="main">
     {{ content | safe }}
   </main>
+
   {% include "footer.njk" %}
-  <script src="/assets/main.js"></script>
-  <script src="/scripts/main.js" defer></script>
+
+  <script src="/assets/main.js" defer></script>
+  <script>
+    // mobile nav toggle (no dependencies)
+    const btn = document.getElementById('navToggle');
+    const links = document.getElementById('nav-links');
+    if (btn && links) {
+      btn.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
 </body>
 </html>

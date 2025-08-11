@@ -1,35 +1,27 @@
-<section class="pre-footer">
-  <div class="logo-strip">
-    <img src="/assets/combined-cobrand-logos.png" />
-  </div>
-</section>
-
-<footer>
-  <div class="footer-top">
-    <div class="footer-top-content">
-      <h2>Ready for Resolution?</h2>
-      <a href="https://contact.apprasure.com" class="footer-cta-btn" target="_blank" rel="noopener">→</a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="{{ site.logo or '/assets/apple-touch-icon.png' }}" alt="AppraSure Logo Footer" width="200" height="45" />
+      <p class="tagline">Clear Resolutions for Complex Disputes</p>
     </div>
-  </div>
 
-  <div class="footer-bottom">
-    <div class="footer-column">
-      <img src="/assets/apprasure-transparent.png" alt="AppraSure Logo Footer">
-      <p>Clear Resolutions for Complex Disputes</p>
-    </div>
-    <div class="footer-column">
+    <div class="footer-contact">
       <h4>Contact</h4>
-      <div>Email: <a href="mailto:info@apprasure.com">info@apprasure.com</a></div>
-      <div>Text: (469) 905-0505</div>
-      <div>Lewisville, TX</div>
+      <p>Email: <a href="mailto:{{ site.email or 'info@apprasure.com' }}">{{ site.email or 'info@apprasure.com' }}</a></p>
+      <p>Text: <a href="tel:{{ site.phone or '(469) 905-0505' }}">{{ site.phone or '(469) 905-0505' }}</a></p>
+      <p>{{ site.location or 'Lewisville, TX' }}</p>
     </div>
-    <div class="footer-column">
+
+    <div class="footer-social">
       <h4>Follow Us</h4>
-      <div><a href="#">LinkedIn</a></div>
-      <div><a href="#">Instagram</a></div>
+      <p>
+        <a href="{{ site.linkedin or '#' }}" rel="noopener">LinkedIn</a><br />
+        <a href="{{ site.instagram or '#' }}" rel="noopener">Instagram</a>
+      </p>
     </div>
   </div>
-  <div class="footer-bottom-bar">
-    &copy; {{ site.year }} {{ site.name }}. All rights reserved.
+
+  <div class="container footer-meta">
+    <p>© {% year %} AppraSure. All rights reserved.</p>
   </div>
 </footer>
