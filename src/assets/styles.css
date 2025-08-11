@@ -1,0 +1,409 @@
+/* ===========================
+   AppraSure – Full Stylesheet
+   =========================== */
+
+:root{
+  --primary:#3a4b42;
+  --accent:#e1f2e3;
+  --text-dark:#2e2e2e;
+  --header-gradient:linear-gradient(to bottom,#2c2c2c,#1f1f1f);
+
+  /* Tweak this so the nav sits just under the header on your site */
+  --header-height:120px;
+}
+
+/* Base / reset-ish */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background-image:url('/assets/floorplan-background.png');
+  background-repeat:repeat;
+  background-size:600px;
+  color:#1c1c1c;
+  line-height:1.6;
+}
+
+/* -----------------
+   Header + Top Nav
+   ----------------- */
+header{
+  padding:.2rem .25rem;
+  z-index:1000;
+  text-align:center;
+  background:var(--header-gradient);
+  box-shadow:0 4px 10px rgba(0,0,0,.4);
+  position:sticky;
+  top:0;
+}
+header img{
+  width:320px;
+  height:auto;
+  display:block;
+  margin:0 auto .25rem;
+}
+header p{
+  font-size:1.1rem;
+  font-style:italic;
+  color:var(--accent);
+  margin:0 auto;
+  text-align:center;
+}
+
+/* Fixed nav sits under the header */
+nav{
+  position:fixed;
+  top:var(--header-height);
+  left:0;
+  width:100%;
+  z-index:1001;
+  text-align:center;
+  padding:.25rem 0;
+  background-image:linear-gradient(to bottom,#3b5f41,#324c37);
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+nav a{
+  margin:0 .75rem;
+  text-decoration:none;
+  color:var(--accent);
+  font-weight:700;
+  transition:color .25s ease;
+}
+nav a:hover{color:#a7dfb9}
+
+/* -------------
+   Generic layout
+   ------------- */
+section{
+  padding:0 .5rem;
+  max-width:950px;
+  /* push content below header + fixed nav */
+  margin:calc(var(--header-height) + 52px) auto 1.5rem;
+  background:rgba(220,220,215,.65);
+  border-radius:12px;
+}
+
+/* Container helper for wide grids within sections */
+.container{max-width:1080px;margin:0 auto}
+
+/* ----------------
+   Hero / Headline
+   ---------------- */
+.hero{padding:3.25rem 1.25rem 3rem;text-align:center}
+.hero-inner{max-width:960px;margin:0 auto}
+.hero h1{
+  font-size:clamp(2.25rem,4.8vw,3.5rem);
+  line-height:1.15;
+  margin:.25rem 0 .75rem;
+}
+.hero p{font-size:clamp(1.05rem,2.1vw,1.25rem);opacity:.95}
+.hero .btn + .btn{margin-left:.5rem}
+
+/* -------
+   Buttons
+   ------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:.4rem;padding:.6rem 1rem;border-radius:999px;
+  text-decoration:none;font-weight:600;border:1px solid transparent;
+}
+.btn-primary{background:#2c2c2c;color:#fff}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-secondary{background:#e1f2e3;color:#1c1c1c;border-color:rgba(0,0,0,.06)}
+.btn-secondary:hover{filter:brightness(.98)}
+.btn-link{color:#1c1c1c;text-decoration:underline;text-underline-offset:3px}
+
+/* -------------------
+   Feature Grid (cards)
+   ------------------- */
+.feature-grid{display:grid;gap:1.25rem}
+.feature{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:1.25rem;
+  align-items:center;
+
+  /* default “card” look */
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(120%) blur(8px);
+  -webkit-backdrop-filter:saturate(120%) blur(8px);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:16px;
+  box-shadow:0 8px 28px rgba(0,0,0,.10);
+  color:#1c1c1c;
+  overflow:visible;
+}
+.feature:nth-child(even){grid-template-columns:1fr 1.2fr}
+.feature-img{
+  display:block;width:100%;height:320px;object-fit:cover;
+  border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.10);
+}
+
+/* Use this when you DO NOT want the outer feature card backdrop */
+.feature--flat{
+  background:transparent !important;
+  box-shadow:none !important;
+  border:0 !important;
+}
+
+/* ---------------
+   Evidence Stack
+   --------------- */
+/* Localized, elegant backdrop ONLY around the image/overlays */
+.evidence-backdrop{
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(120%) blur(6px);
+  -webkit-backdrop-filter:saturate(120%) blur(6px);
+  padding:1rem;
+  border-radius:14px;
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+  display:inline-block; /* shrink-wrap to content width */
+}
+
+.evidence-stack{position:relative;display:block}
+.evidence-photo{
+  display:block;width:100%;height:auto;
+  background:transparent;border-radius:12px;
+  box-shadow:0 10px 28px rgba(0,0,0,.18);
+}
+
+/* Small note card that sits over the photo */
+.note-card{
+  position:absolute;top:12px;left:12px;z-index:2;
+  background:rgba(255,255,255,.94);
+  padding:.6rem .9rem;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,.05);
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  max-width:75%;
+  line-height:1.25;
+}
+.note-card table{border-collapse:collapse;font-size:.9rem;width:100%}
+.note-card th,.note-card td{
+  padding:.3rem .4rem;border-bottom:1px solid rgba(0,0,0,.06)
+}
+.note-card tr:last-child td{border-bottom:none}
+
+/* On-photo label */
+.material-spec{
+  position:absolute;left:16px;bottom:14px;z-index:2;
+  background:rgba(33,45,40,.9);color:#fff;
+  padding:.4rem .6rem;border-radius:6px;
+  font-size:.85rem;font-weight:700;
+  box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+
+/* -------------------
+   Steps (How it works)
+   ------------------- */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1rem;
+}
+.step{
+  padding:1.25rem 1rem;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(120%) blur(8px);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:16px;
+  box-shadow:0 8px 28px rgba(0,0,0,.10);
+}
+.step .icon{
+  float:left;font-size:1.8rem;line-height:1;
+  margin:.15rem .75rem .25rem 0
+}
+.step h3{
+  font-size:clamp(1.1rem,2.1vw,1.3rem);
+  line-height:1.25;margin:0 0 .25rem
+}
+.step p{margin:0;line-height:1.5;max-width:52ch}
+.step::after{content:"";display:block;clear:both}
+
+/* -------------
+   Audience grid
+   ------------- */
+.audience-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1rem;align-items:stretch
+}
+.audience-card{
+  min-height:320px;display:flex;flex-direction:column;
+  justify-content:flex-start;padding:1.5rem;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(120%) blur(8px);
+  border-radius:16px;
+  box-shadow:0 8px 28px rgba(0,0,0,.10);
+}
+.audience-card h2{text-align:center;margin:0 0 1rem;font-size:2rem}
+.audience-card ul{padding-left:1.2rem;margin:0;flex-grow:1}
+.audience-card li{margin-bottom:.5rem;font-size:.95rem;line-height:1.4}
+
+/* ----------
+   CTA section
+   ---------- */
+.cta{text-align:center}
+.cta p{margin-left:auto;margin-right:auto;max-width:640px}
+.cta .btn{display:inline-flex;margin-top:1rem}
+
+/* ----
+   FAQs
+   ---- */
+.faqs details{padding:.75rem 1rem;margin-bottom:.5rem;background:rgba(255,255,255,.85);border-radius:12px}
+.faqs summary{cursor:pointer;font-weight:600}
+
+/* ------
+   Footer
+   ------ */
+footer{margin-top:1.5rem;font-size:.95rem}
+
+/* CTA band inside footer (if used elsewhere, keep) */
+.footer-top{
+  background:linear-gradient(to bottom,rgba(44,44,44,.85),rgba(31,31,31,.85));
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  color:#f2f2f2;
+  padding:.85rem 1rem;
+  border:1px solid rgba(220,220,215,.25);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+  border-radius:14px;
+}
+.footer-top h2{margin:0;font-size:1.25rem;font-weight:700;letter-spacing:.2px}
+
+.footer-bottom{
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+  background-image:linear-gradient(to right,#3b5f41,#324c37);
+  display:flex;flex-wrap:wrap;justify-content:space-between;
+  padding:2rem 1rem;gap:1.5rem;color:#ccc
+}
+.footer-bottom a{color:inherit;text-decoration:underline}
+.footer-bottom img{width:200px;height:auto}
+.footer-bottom-bar{background:#2c2c2c;color:#ccc;text-align:center;padding:.5rem}
+
+/* --------------
+   Responsive tune
+   -------------- */
+@media (max-width:900px){
+  :root{--header-height:114px}
+}
+@media (max-width:560px){
+  :root{--header-height:108px}
+  header img{width:280px}
+  .note-card{top:10px;left:10px;max-width:86%;padding:.5rem .7rem;line-height:1.2}
+  .note-card table{font-size:.9rem}
+  .material-spec{left:14px;bottom:12px}
+}
+
+/* Make this feature text-left / image-right explicitly */
+.feature--image-right { grid-template-columns: 1fr 1.2fr; }
+
+/* Remove default figure margins so the image aligns perfectly */
+.feature-media { margin: 0; }
+
+/* Bigger, bolder image with a slight bleed out of the card */
+.feature--bleed .feature-img {
+  height: 420px;
+  object-fit: cover;
+  position: relative;
+  top: -14px;           /* lift a touch */
+  right: -20px;         /* “bleed” to the right edge */
+  width: calc(100% + 40px);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+}
+
+/* Keep it tidy on small screens */
+@media (max-width: 720px) {
+  .feature--image-right { grid-template-columns: 1fr; } /* stack */
+  .feature--bleed .feature-img {
+    top: 0; right: 0; width: 100%; height: 320px; border-radius: 14px;
+  }
+}
+
+
+
+
+/* ====== A11y Skip Link ====== */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: .5rem .75rem;
+  background: #fff;
+  color: var(--primary);
+  border-radius: .5rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  z-index: 10000;
+}
+
+/* ====== Mobile Nav ====== */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--header-gradient);
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
+.site-nav .nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: .75rem;
+  margin-left: .5rem;
+}
+.nav-toggle-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 5px 0;
+  background: #fff;
+  border-radius: 2px;
+}
+.site-nav .nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+.site-nav a {
+  color: #e9e9e9;
+  text-decoration: none;
+  padding: .5rem .25rem;
+}
+.site-nav a.active { border-bottom: 2px solid var(--accent); }
+
+@media (max-width: 768px) {
+  .site-nav {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+  .site-nav .nav-toggle { display: inline-block; }
+  .site-nav .nav-links {
+    grid-column: 1 / -1;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: .5rem 1rem 1rem;
+    background: var(--header-gradient);
+  }
+  .site-nav .nav-links.open { display: flex; }
+}
+
+/* ====== Anchor Targets ====== */
+section[id], h2[id], h3[id] {
+  scroll-margin-top: calc(var(--header-height, 120px) + 16px);
+}
+html { scroll-behavior: smooth; }
