@@ -1,7 +1,9 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <img src="{{ site.logo or '/assets/apple-touch-icon.png' }}" alt="AppraSure Logo Footer" width="200" height="45" />
+      {% set logo = site.logo %}
+      {% if not logo %}{% set logo = '/assets/apple-touch-icon.png' %}{% endif %}
+      <img src="{{ logo }}" alt="AppraSure Logo Footer" width="200" height="45" />
       <p class="tagline">Clear Resolutions for Complex Disputes</p>
     </div>
 
