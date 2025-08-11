@@ -2,419 +2,278 @@
    AppraSure – Full Stylesheet
    =========================== */
 
+/* ---------- Theme Tokens ---------- */
 :root{
-  --primary:#3a4b42;
-  --accent:#e1f2e3;
+  --primary:#3a4b42;                 /* deep green */
+  --accent:#e1f2e3;                  /* pale mint */
   --text-dark:#2e2e2e;
+  --text:#1c1c1c;
   --header-gradient:linear-gradient(to bottom,#2c2c2c,#1f1f1f);
+  --header-height:120px;             /* used for sticky offset */
+  --radius:14px;
 
-  /* Tweak this so the nav sits just under the header on your site */
-  --header-height:120px;
+  /* spacing scale */
+  --space-1:.25rem;
+  --space-2:.5rem;
+  --space-3:.75rem;
+  --space-4:1rem;
+  --space-5:1.5rem;
+  --space-6:2rem;
+  --space-7:3rem;
 }
 
-/* Base / reset-ish */
+/* ---------- Base / Reset-ish ---------- */
 *{box-sizing:border-box}
-html,body{height:100%}
+html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:'Segoe UI',sans-serif;
+  font-family:'Segoe UI',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text);
+  line-height:1.6;
   background-image:url('/assets/floorplan-background.png');
   background-repeat:repeat;
   background-size:600px;
-  color:#1c1c1c;
-  line-height:1.6;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+
+/* ---------- Layout primitives ---------- */
+.container{
+  width:100%;
+  max-width:1100px;
+  margin-inline:auto;
+  padding-inline:var(--space-4);
+}
+.section{
+  padding-block:var(--space-7);
+}
+.section-title{
+  margin:0 0 var(--space-3);
+  font-weight:700;
+  color:var(--text-dark);
+  font-size:clamp(1.5rem,2vw + 1rem,2rem);
+}
+.lead{
+  margin:0 0 var(--space-4);
+  color:#3a3a3a;
 }
 
-/* -----------------
-   Header + Top Nav
-   ----------------- */
+/* ---------- Accessibility ---------- */
+.skip-link{
+  position:absolute;
+  left:-999px;
+  top:auto;
+  width:1px;height:1px;overflow:hidden;
+}
+.skip-link:focus{
+  position:fixed;left:1rem;top:1rem;z-index:10000;
+  width:auto;height:auto;padding:.5rem .75rem;
+  background:#fff;color:var(--primary);
+  border-radius:.5rem;box-shadow:0 4px 14px rgba(0,0,0,.18);
+}
+
+/* Keep in-page anchors from hiding under sticky nav */
+section[id],h2[id],h3[id]{scroll-margin-top:calc(var(--header-height) + 16px)}
+
+/* ---------- Header ---------- */
 header{
-  padding:.2rem .25rem;
-  z-index:1000;
+  padding:var(--space-2) var(--space-2);
   text-align:center;
   background:var(--header-gradient);
   box-shadow:0 4px 10px rgba(0,0,0,.4);
-  position:sticky;
-  top:0;
 }
 header img{
-  width:320px;
+  width:min(36vw,360px);
+  margin:0 auto var(--space-2);
   height:auto;
-  display:block;
-  margin:0 auto .25rem;
 }
 header p{
-  font-size:1.1rem;
-  font-style:italic;
-  color:var(--accent);
-  margin:0 auto;
-  text-align:center;
+  margin:.25rem 0 0;
+  color:#e9e9e9;
+  letter-spacing:.02em;
 }
 
-/* Fixed nav sits under the header */
-nav{
-  position:fixed;
-  top:var(--header-height);
-  left:0;
-  width:100%;
-  z-index:1001;
-  text-align:center;
-  padding:.25rem 0;
-  background-image:linear-gradient(to bottom,#3b5f41,#324c37);
-  box-shadow:0 4px 12px rgba(0,0,0,.2);
+/* ---------- Nav (sticky) ---------- */
+.site-nav{
+  position:sticky;top:0;z-index:999;
+  background:var(--header-gradient);
+  box-shadow:0 4px 10px rgba(0,0,0,.3);
 }
-nav a{
-  margin:0 .75rem;
-  text-decoration:none;
-  color:var(--accent);
-  font-weight:700;
-  transition:color .25s ease;
+.site-nav .nav-toggle{
+  display:none;background:transparent;border:0;padding:.75rem;margin-left:.5rem
 }
-nav a:hover{color:#a7dfb9}
-
-/* -------------
-   Generic layout
-   ------------- */
-section{
-  padding:0 .5rem;
-  max-width:950px;
-  /* push content below header + fixed nav */
-  margin:calc(var(--header-height) + 52px) auto 1.5rem;
-  background:rgba(220,220,215,.65);
-  border-radius:12px;
+.nav-toggle-bar{
+  display:block;width:24px;height:2px;margin:5px 0;background:#fff;border-radius:2px
+}
+.site-nav .nav-links{
+  display:flex;gap:1rem;align-items:center;
+  padding:.5rem 1rem;
+}
+.site-nav a{
+  color:#e9e9e9;text-decoration:none;padding:.5rem .25rem;
+}
+.site-nav a.active{border-bottom:2px solid var(--accent)}
+@media (max-width:768px){
+  .site-nav{display:grid;grid-template-columns:auto 1fr;align-items:center}
+  .site-nav .nav-toggle{display:inline-block}
+  .site-nav .nav-links{
+    grid-column:1 / -1;display:none;flex-direction:column;align-items:flex-start;
+    padding:.5rem 1rem 1rem;background:var(--header-gradient)
+  }
+  .site-nav .nav-links.open{display:flex}
 }
 
-/* Container helper for wide grids within sections */
-.container{max-width:1080px;margin:0 auto}
-
-/* ----------------
-   Hero / Headline
-   ---------------- */
-.hero{padding:3.25rem 1.25rem 3rem;text-align:center}
-.hero-inner{max-width:960px;margin:0 auto}
-.hero h1{
-  font-size:clamp(2.25rem,4.8vw,3.5rem);
-  line-height:1.15;
-  margin:.25rem 0 .75rem;
-}
-.hero p{font-size:clamp(1.05rem,2.1vw,1.25rem);opacity:.95}
-.hero .btn + .btn{margin-left:.5rem}
-
-/* -------
-   Buttons
-   ------- */
+/* ---------- Buttons ---------- */
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  gap:.4rem;padding:.6rem 1rem;border-radius:999px;
-  text-decoration:none;font-weight:600;border:1px solid transparent;
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.65rem 1rem;border-radius:999px;border:2px solid transparent;
+  text-decoration:none;font-weight:600;cursor:pointer;transition:.2s ease;
 }
-.btn-primary{background:#2c2c2c;color:#fff}
-.btn-primary:hover{filter:brightness(1.1)}
-.btn-secondary{background:#e1f2e3;color:#1c1c1c;border-color:rgba(0,0,0,.06)}
-.btn-secondary:hover{filter:brightness(.98)}
-.btn-link{color:#1c1c1c;text-decoration:underline;text-underline-offset:3px}
-
-/* -------------------
-   Feature Grid (cards)
-   ------------------- */
-.feature-grid{display:grid;gap:1.25rem}
-.feature{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:1.25rem;
-  align-items:center;
-
-  /* default “card” look */
-  background:rgba(255,255,255,.85);
-  backdrop-filter:saturate(120%) blur(8px);
-  -webkit-backdrop-filter:saturate(120%) blur(8px);
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:16px;
-  box-shadow:0 8px 28px rgba(0,0,0,.10);
-  color:#1c1c1c;
-  overflow:visible;
+.btn:focus{outline:2px solid #0002;outline-offset:2px}
+.btn-primary{
+  background:var(--primary);color:#fff;border-color:var(--primary);
 }
-.feature:nth-child(even){grid-template-columns:1fr 1.2fr}
-.feature-img{
-  display:block;width:100%;height:320px;object-fit:cover;
-  border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.10);
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-secondary{
+  background:transparent;color:#fff;border-color:#ffffff66;
+}
+.btn-secondary:hover{background:#ffffff1a}
+
+/* ---------- Hero ---------- */
+.hero{
+  background:linear-gradient(180deg,#00000055,#00000020), var(--header-gradient);
+  color:#fff;
+  padding-block:clamp(3rem,7vw,6rem);
+}
+.hero-inner{
+  text-align:center;
+}
+.hero h1{
+  margin:0 0 .5rem;font-size:clamp(2rem,3vw + 1rem,3rem)
+}
+.hero-cta{
+  display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;
+  margin-top:var(--space-3);
 }
 
-/* Use this when you DO NOT want the outer feature card backdrop */
-.feature--flat{
-  background:transparent !important;
-  box-shadow:none !important;
-  border:0 !important;
+/* ---------- Steps (How it works) ---------- */
+.steps{
+  display:grid;gap:var(--space-4);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  margin-top:var(--space-5);
+}
+.step-card{
+  position:relative;background:#fff;border-radius:var(--radius);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  padding:var(--space-5) var(--space-4) var(--space-4);
+  border:1px solid #0000000e;
+}
+.step-index{
+  position:absolute;inset:auto auto calc(100% - 22px) var(--space-4);
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--accent);color:var(--primary);font-weight:700;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
 }
 
-/* ---------------
-   Evidence Stack
-   --------------- */
-/* Localized, elegant backdrop ONLY around the image/overlays */
-.evidence-backdrop{
-  background:rgba(255,255,255,.92);
+/* ---------- Evidence-Based Scopes (redesigned) ---------- */
+#evidence .evidence{
+  display:grid;gap:2rem;align-items:start;
+}
+#evidence .evidence-media picture,
+#evidence .evidence-media img{
+  display:block;
+  max-width:680px;width:100%;height:auto;
+  border-radius:var(--radius);
+  box-shadow:0 14px 40px rgba(0,0,0,.12);
+  margin-inline:auto;
+}
+.surface{
+  background:rgba(255,255,255,.9);
   backdrop-filter:saturate(120%) blur(6px);
   -webkit-backdrop-filter:saturate(120%) blur(6px);
-  padding:1rem;
-  border-radius:14px;
-  box-shadow:0 8px 24px rgba(0,0,0,.12);
-  display:inline-block; /* shrink-wrap to content width */
-}
-
-.evidence-stack{position:relative;display:block}
-.evidence-photo{
-  display:block;width:100%;height:auto;
-  background:transparent;border-radius:12px;
-  box-shadow:0 10px 28px rgba(0,0,0,.18);
-}
-
-/* Small note card that sits over the photo */
-.note-card{
-  position:absolute;top:12px;left:12px;z-index:2;
-  background:rgba(255,255,255,.94);
-  padding:.6rem .9rem;
-  border-radius:8px;
-  border:1px solid rgba(0,0,0,.05);
-  box-shadow:0 4px 12px rgba(0,0,0,.15);
-  max-width:75%;
-  line-height:1.25;
-}
-.note-card table{border-collapse:collapse;font-size:.9rem;width:100%}
-.note-card th,.note-card td{
-  padding:.3rem .4rem;border-bottom:1px solid rgba(0,0,0,.06)
-}
-.note-card tr:last-child td{border-bottom:none}
-
-/* On-photo label */
-.material-spec{
-  position:absolute;left:16px;bottom:14px;z-index:2;
-  background:rgba(33,45,40,.9);color:#fff;
-  padding:.4rem .6rem;border-radius:6px;
-  font-size:.85rem;font-weight:700;
-  box-shadow:0 3px 8px rgba(0,0,0,.15);
-}
-
-/* -------------------
-   Steps (How it works)
-   ------------------- */
-.steps{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
-}
-.step{
-  padding:1.25rem 1rem;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:saturate(120%) blur(8px);
-  border:1px solid rgba(0,0,0,.06);
   border-radius:16px;
-  box-shadow:0 8px 28px rgba(0,0,0,.10);
+  box-shadow:0 10px 30px rgba(0,0,0,.10);
+  padding:1.25rem 1.25rem 1.5rem;
+  border:1px solid #0000000e;
 }
-.step .icon{
-  float:left;font-size:1.8rem;line-height:1;
-  margin:.15rem .75rem .25rem 0
+.eyebrow{
+  display:inline-block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--primary);background:var(--accent);
+  padding:.25rem .5rem;border-radius:999px;margin-bottom:.5rem;
 }
-.step h3{
-  font-size:clamp(1.1rem,2.1vw,1.3rem);
-  line-height:1.25;margin:0 0 .25rem
+.list-check{
+  list-style:none;margin:0;padding:0;display:grid;gap:.6rem;
 }
-.step p{margin:0;line-height:1.5;max-width:52ch}
-.step::after{content:"";display:block;clear:both}
-
-/* -------------
-   Audience grid
-   ------------- */
-.audience-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;align-items:stretch
+.list-check li{
+  position:relative;padding-left:1.9rem;line-height:1.45;color:#2c2c2c;
 }
-.audience-card{
-  min-height:320px;display:flex;flex-direction:column;
-  justify-content:flex-start;padding:1.5rem;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:saturate(120%) blur(8px);
-  border-radius:16px;
-  box-shadow:0 8px 28px rgba(0,0,0,.10);
+.list-check li::before{
+  content:"";position:absolute;left:0;top:.15rem;width:1.1rem;height:1.1rem;border-radius:50%;
+  background:var(--accent);box-shadow:inset 0 0 0 2px rgba(58,75,66,.15);
 }
-.audience-card h2{text-align:center;margin:0 0 1rem;font-size:2rem}
-.audience-card ul{padding-left:1.2rem;margin:0;flex-grow:1}
-.audience-card li{margin-bottom:.5rem;font-size:.95rem;line-height:1.4}
-
-/* ----------
-   CTA section
-   ---------- */
-.cta{text-align:center}
-.cta p{margin-left:auto;margin-right:auto;max-width:640px}
-.cta .btn{display:inline-flex;margin-top:1rem}
-
-/* ----
-   FAQs
-   ---- */
-.faqs details{padding:.75rem 1rem;margin-bottom:.5rem;background:rgba(255,255,255,.85);border-radius:12px}
-.faqs summary{cursor:pointer;font-weight:600}
-
-/* ------
-   Footer
-   ------ */
-footer{margin-top:1.5rem;font-size:.95rem}
-
-/* CTA band inside footer (if used elsewhere, keep) */
-.footer-top{
-  background:linear-gradient(to bottom,rgba(44,44,44,.85),rgba(31,31,31,.85));
-  -webkit-backdrop-filter:blur(10px);
-  backdrop-filter:blur(10px);
-  color:#f2f2f2;
-  padding:.85rem 1rem;
-  border:1px solid rgba(220,220,215,.25);
-  box-shadow:0 8px 24px rgba(0,0,0,.25);
-  border-radius:14px;
+.list-check li::after{
+  content:"";position:absolute;left:.28rem;top:.42rem;width:.55rem;height:.3rem;
+  border-left:2px solid var(--primary);border-bottom:2px solid var(--primary);
+  transform:rotate(-45deg);
 }
-.footer-top h2{margin:0;font-size:1.25rem;font-weight:700;letter-spacing:.2px}
-
-.footer-bottom{
-  box-shadow:0 4px 12px rgba(0,0,0,.2);
-  background-image:linear-gradient(to right,#3b5f41,#324c37);
-  display:flex;flex-wrap:wrap;justify-content:space-between;
-  padding:2rem 1rem;gap:1.5rem;color:#ccc
-}
-.footer-bottom a{color:inherit;text-decoration:underline}
-.footer-bottom img{width:200px;height:auto}
-.footer-bottom-bar{background:#2c2c2c;color:#ccc;text-align:center;padding:.5rem}
-
-/* --------------
-   Responsive tune
-   -------------- */
-@media (max-width:900px){
-  :root{--header-height:114px}
-}
-@media (max-width:560px){
-  :root{--header-height:108px}
-  header img{width:280px}
-  .note-card{top:10px;left:10px;max-width:86%;padding:.5rem .7rem;line-height:1.2}
-  .note-card table{font-size:.9rem}
-  .material-spec{left:14px;bottom:12px}
-}
-
-/* Make this feature text-left / image-right explicitly */
-.feature--image-right { grid-template-columns: 1fr 1.2fr; }
-
-/* Remove default figure margins so the image aligns perfectly */
-.feature-media { margin: 0; }
-
-/* Bigger, bolder image with a slight bleed out of the card */
-.feature--bleed .feature-img {
-  height: 420px;
-  object-fit: cover;
-  position: relative;
-  top: -14px;           /* lift a touch */
-  right: -20px;         /* “bleed” to the right edge */
-  width: calc(100% + 40px);
-  border-radius: 16px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-}
-
-/* Keep it tidy on small screens */
-@media (max-width: 720px) {
-  .feature--image-right { grid-template-columns: 1fr; } /* stack */
-  .feature--bleed .feature-img {
-    top: 0; right: 0; width: 100%; height: 320px; border-radius: 14px;
+@media (min-width:900px){
+  #evidence .evidence{
+    grid-template-columns:1.1fr 1fr;gap:2.25rem;
   }
+  #evidence .evidence-copy{align-self:center}
+}
+/* tighter section spacing here if desired */
+#evidence.section{padding-block:2.5rem}
+
+/* ---------- Estimate Clarity ---------- */
+#estimate-clarity .media-block{
+  margin:var(--space-4) 0;
+}
+#estimate-clarity .media-block picture,
+#estimate-clarity .media-block img{
+  display:block;max-width:680px;width:100%;height:auto;
+  border-radius:var(--radius);
+  box-shadow:0 14px 40px rgba(0,0,0,.12);
+  margin-inline:auto;
+}
+#estimate-clarity .bullets{
+  list-style:none;margin:var(--space-4) 0 0;padding:0;display:grid;gap:.6rem;
+}
+#estimate-clarity .bullets li{
+  position:relative;padding-left:1.25rem;
+}
+#estimate-clarity .bullets li::before{
+  content:"•";position:absolute;left:0;top:.05rem;color:var(--primary);font-weight:700;
 }
 
+/* ---------- FAQ ---------- */
+#faq details{
+  border:1px solid #00000012;border-radius:var(--radius);
+  background:#fff;margin-bottom:var(--space-3);
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
+}
+#faq summary{
+  cursor:pointer;padding:var(--space-4);font-weight:600;list-style:none;
+}
+#faq summary::-webkit-details-marker{display:none}
+#faq details[open] summary{border-bottom:1px solid #00000010}
+#faq details > p{padding:0 var(--space-4) var(--space-4);margin:0;color:#333}
 
+/* ---------- CTA ---------- */
+.cta{
+  text-align:center;
+}
+.cta .btn{margin-top:var(--space-3)}
 
+/* ---------- Utilities ---------- */
+.round{border-radius:var(--radius)}
+.shadow-sm{box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.shadow-md{box-shadow:0 12px 30px rgba(0,0,0,.12)}
 
-/* ====== A11y Skip Link ====== */
-.skip-link {
-  position: absolute;
-  left: -999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+/* ---------- Print tweaks ---------- */
+@media print{
+  .site-nav,.hero{display:none!important}
+  .section{padding-block:1rem}
+  a[href]:after{content:" (" attr(href) ")";font-size:.9em}
 }
-.skip-link:focus {
-  position: fixed;
-  left: 1rem;
-  top: 1rem;
-  width: auto;
-  height: auto;
-  padding: .5rem .75rem;
-  background: #fff;
-  color: var(--primary);
-  border-radius: .5rem;
-  box-shadow: 0 4px 14px rgba(0,0,0,.18);
-  z-index: 10000;
-}
-
-/* ====== Mobile Nav ====== */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: var(--header-gradient);
-  box-shadow: 0 4px 10px rgba(0,0,0,.3);
-}
-.site-nav .nav-toggle {
-  display: none;
-  background: transparent;
-  border: 0;
-  padding: .75rem;
-  margin-left: .5rem;
-}
-.nav-toggle-bar {
-  display: block;
-  width: 24px;
-  height: 2px;
-  margin: 5px 0;
-  background: #fff;
-  border-radius: 2px;
-}
-.site-nav .nav-links {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  padding: .5rem 1rem;
-}
-.site-nav a {
-  color: #e9e9e9;
-  text-decoration: none;
-  padding: .5rem .25rem;
-}
-.site-nav a.active { border-bottom: 2px solid var(--accent); }
-
-@media (max-width: 768px) {
-  .site-nav {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-  }
-  .site-nav .nav-toggle { display: inline-block; }
-  .site-nav .nav-links {
-    grid-column: 1 / -1;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: .5rem 1rem 1rem;
-    background: var(--header-gradient);
-  }
-  .site-nav .nav-links.open { display: flex; }
-}
-
-/* ====== Anchor Targets ====== */
-section[id], h2[id], h3[id] {
-  scroll-margin-top: calc(var(--header-height, 120px) + 16px);
-}
-html { scroll-behavior: smooth; }
-
-/* Keep content images from blowing out layout */
-main picture, 
-main picture img {
-  max-width: 640px;
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-inline: auto; /* center */
-}
-

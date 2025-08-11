@@ -12,141 +12,105 @@ permalink: "/"
     <div class="hero-cta">
       <a class="btn btn-primary" href="https://contact.apprasure.com" target="_blank" rel="noopener">Start Your Case</a>
       <a class="btn btn-secondary" href="#how-it-works">How Appraisal Works</a>
-    </picture></div>
+    </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section id="how-it-works" class="section">
   <div class="container">
-    <h2>A Clear Path to Resolution</h2>
+    <h2 class="section-title">How the Appraisal Process Works</h2>
+    <p class="lead">When price is the dispute, appraisal provides a neutral, structured path to resolution.</p>
 
     <div class="steps">
-      <article class="step">
-        <div class="icon" aria-hidden="true">🔎</div>
-        <h3>1) Identify the Dispute</h3>
-        <p>You and your insurer disagree on scope or price. Appraisal resolves the differences regarding the <em>amount of loss</em>—that’s it.</p>
-      </article>
-
-      <article class="step">
-        <div class="icon" aria-hidden="true">📋</div>
-        <h3>2) Each Side Picks an Appraiser</h3>
-        <p>Both parties select a qualified appraiser. We act as your independent expert to evaluate scope and pricing.</p>
-      </article>
-
-      <article class="step">
-        <div class="icon" aria-hidden="true">🧐</div>
-        <h3>3) Claim Review</h3>
-        <p>Your appraiser reviews all claim documents, inspections, and photos, and gathers any additional information or expert reports needed to support an accurate valuation.</p>
-      </article>
-
-      <article class="step">
-        <div class="icon" aria-hidden="true">🤝</div>
-        <h3>4) Agree or Go to an Umpire</h3>
-        <p>Appraisers compare findings and work together to determine the proper value of the project. If they can’t agree, a neutral umpire is chosen to make the final call.</p>
-      </article>
-
-      <article class="step">
-        <div class="icon" aria-hidden="true">⚖️</div>
-        <h3>5) Binding Award</h3>
-        <p>After both parties reach an agreement, the final award sets the <em>amount of loss</em>.</p>
-      </article>
-
-      <article class="step">
-        <div class="icon" aria-hidden="true">🚀</div>
-        <h3>6) Resolution & Next Steps</h3>
-        <p>Both parties agree to the settled amount, allowing the project to proceed based on the new scope of work.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- VISUAL CALLOUTS -->
-<section id="features" class="section features">
-  <div class="container feature-grid">
-
-    <!-- Evidence Stack (with localized backdrop) -->
-    <div class="feature feature--flat">
-      <div class="evidence-backdrop">
-        <div class="evidence-stack">
-          <picture><source srcset="/assets/xact-comparison.webp" type="image/webp">{% image "/assets/xact-comparison.png", "Xactimate comparison mockup" %}
+      <div class="step-card">
+        <div class="step-index">1</div>
+        <h3>Trigger</h3>
+        <p>You (the insured) invoke appraisal per the policy. Each side selects a qualified appraiser.</p>
       </div>
- <div class="feature-copy">
-        <h3>Evidence-Based Scopes</h3>
-        <p>We pair on-site observations with documentation, photos, and material specs to support every line item.</p>
+      <div class="step-card">
+        <div class="step-index">2</div>
+        <h3>Appraisers</h3>
+        <p>Appraisers inspect, compare scopes, and exchange positions using evidence and current pricing.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-index">3</div>
+        <h3>Award</h3>
+        <p>An umpire is selected if needed. Two of three signatures set the binding amount of loss.</p>
       </div>
     </div>
-
-  <div class="feature feature--image-right feature--bleed">
-  <div class="feature-copy">
-    <h3>Estimate Clarity</h3>
-    <p>Our estimating approach is grounded in restorative construction and current pricing—no fluff, no padding.</p>
   </div>
+</section>
 
-  <figure class="feature-media">
-    {% image "/assets/claim_paperwork_and_estimate.png", "Estimate clarity mockup" %}
-  </figure>
-</div>
-
-<!-- TWO AUDIENCES -->
-<section class="section audience">
-  <div class="container audience-grid">
-    <div class="audience-card">
-      <h2>Homeowners</h2>
-      <ul>
-        <li>Plain-English explanations—no jargon. We make the process simple and accessible.</li>
-        <li>Scope and pricing backed by building standards.</li>
-        <li>Transparent process and timeline.</li>
-      </ul>
-      <a class="btn btn-link" href="#faq">See FAQs</a>
+<!-- EVIDENCE-BASED SCOPES (REDESIGNED) -->
+<section id="evidence" class="section">
+  <div class="container evidence">
+    <div class="evidence-media">
+      {% image "/assets/evidence-based-scope.png", "Evidence-based scope",
+        "(max-width: 900px) 92vw, 680px" %}
     </div>
 
-    <div class="audience-card">
-      <h2>Appraisers</h2>
-      <ul>
-        <li>Clear scopes with line-item rationale.</li>
-        <li>Summaries that highlight scope differences.</li>
-        <li>Industry-standard compliant documentation.</li>
-        <li>Proficient in major estimating tools.</li>
-        <li>Efficient communication to reduce cycle time.</li>
+    <div class="evidence-copy surface">
+      <span class="eyebrow">Evidence-Based Scopes</span>
+      <h2 class="section-title">Clear, defensible, settlement-ready</h2>
+      <p class="lead">Scopes grounded in restorative construction and current pricing—not fluff.</p>
+
+      <ul class="list-check">
+        <li>Line items tied to photos, codes, and manufacturer guidance</li>
+        <li>Current assemblies and pricing (Xactimate) with notes where needed</li>
+        <li>Mitigation → moisture mapping → build-back continuity</li>
+        <li>Organized for fast carrier review and easier agreement</li>
       </ul>
-      <a class="btn btn-link" href="/services/">Our Services</a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="section cta">
+<!-- ESTIMATE CLARITY (kept simple; we can style to match on request) -->
+<section id="estimate-clarity" class="section">
   <div class="container">
-    <h2>Ready for Resolution?</h2>
-    <p>Connect with us to navigate your claim confidently.</p>
-    <a class="btn btn-primary" href="https://contact.apprasure.com" target="_blank" rel="noopener">Contact AppraSure</a>
+    <h2 class="section-title">Estimate Clarity</h2>
+    <p class="lead">Transparent quantities, clear assumptions, and no padding—built the way adjusters and contractors work.</p>
+
+    <div class="media-block">
+      {% image "/assets/claim_paperwork_and_estimate.png", "Estimate clarity mockup",
+        "(max-width: 900px) 92vw, 680px" %}
+    </div>
+
+    <ul class="bullets">
+      <li>Readable structure with sections, assemblies, and supportive notes</li>
+      <li>Photos and annotations that match line items</li>
+      <li>Assumptions and exclusions called out up front</li>
+    </ul>
   </div>
 </section>
 
-<!-- FAQs -->
-<section id="faq" class="section faqs">
+<!-- FAQ -->
+<section id="faq" class="section">
   <div class="container">
-    <h2>Frequently Asked Questions</h2>
+    <h2 class="section-title">Frequently Asked</h2>
 
     <details>
-      <summary>What is appraisal in an insurance claim?</summary>
-      <p>When you and your insurer can’t agree on the amount of loss, each side selects an independent appraiser. The appraisers review the claim, gather evidence, and if needed involve a neutral umpire. It’s built to be fair, impartial, and faster than litigation.</p>
-    </details>
-
-    <details>
-      <summary>Does appraisal decide coverage?</summary>
-      <p>No—appraisal determines how much the loss is, not whether it’s covered. If there’s a coverage dispute, involve a licensed public adjuster before invoking appraisal.</p>
+      <summary>Is appraisal the same as a public adjuster?</summary>
+      <p>No—appraisal determines the amount of loss. It doesn’t decide coverage. A public adjuster represents you on coverage and settlement; appraisal is a dispute-resolution clause focused on price.</p>
     </details>
 
     <details>
       <summary>How long does it take?</summary>
-      <p>It varies by complexity and scheduling, but the structured process moves claims forward faster than open-ended negotiations.</p>
+      <p>It varies by complexity and scheduling. The structured, deadline-driven process typically moves claims faster than open-ended negotiations.</p>
     </details>
 
     <details>
       <summary>What does AppraSure do for me?</summary>
-      <p>We bridge the gap between construction expertise and insurance claim resolution. We scope accurately, price to real-world conditions, and back it up with clear, defensible documentation that meets industry standards.</p>
+      <p>We bridge construction expertise and insurance requirements—producing clear, defensible documentation that stands up to scrutiny and speeds resolution.</p>
     </details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section">
+  <div class="container cta">
+    <h2 class="section-title">Ready to move forward?</h2>
+    <p class="lead">We’ll review your file and help you set a straighter path to a fair outcome.</p>
+    <a class="btn btn-primary" href="https://contact.apprasure.com" target="_blank" rel="noopener">Start Your Case</a>
   </div>
 </section>
