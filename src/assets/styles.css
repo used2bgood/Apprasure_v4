@@ -1,156 +1,228 @@
----
-layout: layout.njk
-title: AppraSure | Home
-permalink: "/"
----
+/* ======================================================
+   AppraSure — Clean Baseline v1 (CSS-only makeover)
+   Keep markup as-is; this styles existing classes.
+   ====================================================== */
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container hero-inner">
-    <h1>Fast, Fair, Finally.</h1>
-    <p>We help reach a fair settlement—without the confusion and delay.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="https://contact.apprasure.com" target="_blank" rel="noopener">Start Your Case</a>
-      <a class="btn btn-secondary" href="#how-it-works">How Appraisal Works</a>
-    </div>
-  </div>
-</section>
+/* ---------- Design tokens ---------- */
+:root{
+  --bg:#ffffff;
+  --text:#0f172a;           /* slate-900 */
+  --text-muted:#475569;     /* slate-600 */
+  --border:#e2e8f0;         /* slate-200 */
+  --primary:#23443a;        /* deep green */
+  --primary-600:#1e3931;
+  --accent:#e8f5ee;         /* soft green tint */
+  --radius:14px;
+  --shadow-sm:0 6px 18px rgba(0,0,0,.06);
+  --shadow-md:0 12px 28px rgba(0,0,0,.10);
 
-<!-- HOW IT WORKS -->
-<section id="how-it-works" class="section">
-  <div class="container">
-    <h2 class="section-title">How the Appraisal Process Works</h2>
-    <p class="lead">When price is the dispute, appraisal provides a neutral, structured path to resolution.</p>
+  --container:1100px;
+  --space-1:.25rem;
+  --space-2:.5rem;
+  --space-3:.75rem;
+  --space-4:1rem;
+  --space-5:1.5rem;
+  --space-6:2rem;
+  --space-7:3rem;
+  --space-8:4rem;
+}
 
-    <div class="steps">
-      <div class="step-card">
-        <div class="step-index">1</div>
-        <h3>Trigger</h3>
-        <p>You (the insured) invoke appraisal per the policy. Each side selects a qualified appraiser.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-index">2</div>
-        <h3>Appraisers</h3>
-        <p>Appraisers inspect, compare scopes, and exchange positions using evidence and current pricing.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-index">3</div>
-        <p>An umpire is selected if needed. Two of three signatures set the binding amount of loss.</p>
-      </div>
-    </div>
-  </div>
-</section>
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.6;
+}
+img{max-width:100%; height:auto; display:block}
+a{color:inherit; text-decoration:none}
 
-<!-- EVIDENCE-BASED SCOPES -->
-<section id="evidence" class="section">
-  <div class="container evidence">
-    <div class="evidence-media">
-      {% image "/assets/xact-comparison.png", "Xact comparison", "(max-width: 900px) 92vw, 680px" %}
-    </div>
+/* ---------- Layout primitives ---------- */
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:var(--space-4);
+}
+.section{ padding-block: var(--space-8); }
+.section-title{
+  margin:0 0 var(--space-3);
+  font-weight:700;
+  color:var(--text);
+  font-size:clamp(1.6rem,2vw + 1rem,2.2rem);
+}
+.lead{
+  margin:0 0 var(--space-5);
+  color:var(--text-muted);
+}
 
-    <div class="evidence-copy surface">
-      <span class="eyebrow">Evidence-Based Scopes</span>
-      <h2 class="section-title">Clear, defensible, settlement-ready</h2>
-      <p class="lead">Scopes grounded in restorative construction and current pricing—not fluff.</p>
+/* ---------- Accessibility ---------- */
+.skip-link{
+  position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip-link:focus{
+  position:fixed; left:1rem; top:1rem; z-index:10000;
+  background:#fff; color:var(--primary); padding:.5rem .75rem;
+  border-radius:.5rem; box-shadow:0 4px 14px rgba(0,0,0,.15);
+}
 
-      <ul class="list-check">
-        <li>Line items tied to photos, codes, and manufacturer guidance</li>
-        <li>Current assemblies and pricing (Xactimate) with notes where needed</li>
-        <li>Mitigation → moisture mapping → build-back continuity</li>
-        <li>Organized for fast carrier review and easier agreement</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ESTIMATE CLARITY -->
-<section id="estimate-clarity" class="section">
-  <div class="container">
-    <h2 class="section-title">Estimate Clarity</h2>
-    <p class="lead">Transparent quantities, clear assumptions, and no padding—built the way adjusters and contractors work.</p>
-
-    <div class="media-block">
-      {% image "/assets/claim_paperwork_and_estimate.png", "Estimate clarity mockup", "(max-width: 900px) 92vw, 680px" %}
-    </div>
-
-    <ul class="bullets">
-      <li>Readable structure with sections, assemblies, and supportive notes</li>
-      <li>Photos and annotations that match line items</li>
-      <li>Assumptions and exclusions called out up front</li>
-    </ul>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="section">
-  <div class="container">
-    <h2 class="section-title">Frequently Asked</h2>
-
-    <details>
-      <summary>Is appraisal the same as a public adjuster?</summary>
-      <p>No—appraisal determines the amount of loss. It doesn’t decide coverage. A public adjuster represents you on coverage and settlement; appraisal is a dispute-resolution clause focused on price.</p>
-    </details>
-
-    <details>
-      <summary>How long does it take?</summary>
-      <p>It varies by complexity and scheduling. The structured, deadline-driven process typically moves claims faster than open-ended negotiations.</p>
-    </details>
-
-    <details>
-      <summary>What does AppraSure do for me?</summary>
-      <p>We bridge construction expertise and insurance requirements—producing clear, defensible documentation that stands up to scrutiny and speeds resolution.</p>
-    </details>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="section">
-  <div class="container cta">
-    <h2 class="section-title">Ready to move forward?</h2>
-    <p class="lead">We’ll review your file and help you set a straighter path to a fair outcome.</p>
-    <a class="btn btn-primary" href="https://contact.apprasure.com" target="_blank" rel="noopener">Start Your Case</a>
-  </div>
-</section>
-
-/* --- Header (match live site) --- */
-.site-header {
+/* ---------- Header ---------- */
+header{
   background:#fff;
-  border-bottom:1px solid var(--border, #e2e8f0);
+  border-bottom:1px solid var(--border);
 }
-.site-header .container { text-align:center; padding-block:1.25rem; }
-.site-header .brand img { display:block; margin-inline:auto; height:auto; }
-.site-header .tagline { margin:.35rem 0 0; color:var(--text-muted, #475569); }
+header .container{
+  display:flex; align-items:center; justify-content:center;
+  padding-block: var(--space-4);
+  text-align:center;
+}
+header img{
+  width:min(36vw,360px); height:auto; margin-inline:auto;
+}
+header p{
+  margin:.25rem 0 0; color:var(--text-muted);
+}
 
-/* --- Nav (light, sticky) --- */
-.site-nav { position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--border, #e2e8f0); }
-.site-nav .container { display:flex; align-items:center; gap:1rem; min-height:56px; }
-.site-nav .nav-links { display:flex; gap:1rem; margin-left:auto; }
-.site-nav .nav-links a { padding:.5rem .6rem; border-radius:8px; color:#0f172a; text-decoration:none; }
-.site-nav .nav-links a:hover { background:#f8fafc; }
-.site-nav .nav-links a.active { background:#e8f5ee; color:#23443a; }
-.nav-toggle { display:none; background:transparent; border:0; padding:.5rem; }
-.nav-toggle-bar { display:block; width:24px; height:2px; margin:5px 0; background:#0f172a; border-radius:2px; }
+/* ---------- Nav (sticky, light) ---------- */
+.site-nav{
+  position:sticky; top:0; z-index:50;
+  background:#fff; border-bottom:1px solid var(--border);
+}
+.site-nav .container{
+  display:flex; align-items:center; gap:1rem; min-height:56px;
+}
+.nav-toggle{
+  display:none; background:transparent; border:0; padding:.5rem; margin-left:-.5rem;
+}
+.nav-toggle-bar{ display:block; width:24px; height:2px; margin:5px 0; background:#0f172a; border-radius:2px; }
+
+.nav-links{ display:flex; gap:1rem; margin-left:auto; }
+.nav-links a{
+  padding:.5rem .6rem; border-radius:8px; color:#0f172a;
+}
+.nav-links a:hover{ background:#f8fafc; } /* slate-50 */
+.nav-links a.active{ background:var(--accent); color:var(--primary); }
+
 @media (max-width: 768px){
-  .site-nav .container { flex-wrap:wrap; }
-  .nav-toggle { display:inline-block; }
-  .site-nav .nav-links { display:none; width:100%; padding:0 0 .5rem; }
-  .site-nav .nav-links.open { display:flex; flex-direction:column; align-items:flex-start; }
+  .site-nav .container{ flex-wrap:wrap; }
+  .nav-toggle{ display:inline-block; }
+  .nav-links{ display:none; width:100%; padding-bottom:.5rem; }
+  .nav-links.open{ display:flex; flex-direction:column; align-items:flex-start; }
 }
 
-/* --- Footer (match live site sections) --- */
-.site-footer { background:#fff; border-top:1px solid var(--border, #e2e8f0); margin-top:2rem; }
-.site-footer .footer-grid {
-  display:grid; gap:1.25rem; align-items:start;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  padding-block:1.75rem;
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.7rem 1.1rem; border-radius:999px; font-weight:600;
+  border:1px solid transparent; cursor:pointer; transition:.15s ease-in-out;
 }
-.site-footer .footer-brand img { display:block; height:auto; }
-.site-footer .tagline { color:var(--text-muted, #475569); margin:.35rem 0 0; }
-.site-footer h4 { margin:.25rem 0 .5rem; font-size:1rem; }
-.site-footer a { color:#0f172a; text-decoration:none; }
-.site-footer a:hover { text-decoration:underline; }
-.site-footer .footer-meta { border-top:1px solid var(--border, #e2e8f0); padding-block:1rem; text-align:center; color:#475569; }
-@media (max-width: 900px){
-  .site-footer .footer-grid { grid-template-columns: 1fr; }
+.btn:focus{ outline:2px solid #0002; outline-offset:2px; }
+.btn-primary{ background:var(--primary); color:#fff; border-color:var(--primary); }
+.btn-primary:hover{ background:var(--primary-600); }
+.btn-secondary{ background:#fff; color:var(--primary); border-color:var(--border); }
+.btn-secondary:hover{ background:#f8fafc; }
+
+/* ---------- Hero (clean) ---------- */
+.hero{
+  background:linear-gradient(180deg, #ffffff, #f7fbf8);
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{ text-align:center; padding-block: clamp(2.5rem, 6vw, 5rem); }
+.hero h1{ margin:0 0 .5rem; font-size:clamp(2rem,3vw + 1rem,3rem); }
+.hero p{ color:var(--text-muted); max-width:720px; margin:0 auto; }
+.hero-cta{ display:flex; gap:var(--space-3); justify-content:center; flex-wrap:wrap; margin-top:var(--space-4); }
+
+/* ---------- Steps ---------- */
+.steps{
+  display:grid; gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: var(--space-5);
+}
+.step-card{
+  position:relative; background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); padding: var(--space-5) var(--space-4) var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+.step-index{
+  position:absolute; left: var(--space-4); top: -22px;
+  width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center;
+  background: var(--accent); color: var(--primary); font-weight:700;
+  box-shadow: var(--shadow-sm);
 }
 
+/* ---------- Evidence (image + copy) ---------- */
+#evidence .evidence{ display:grid; gap:2rem; align-items:start; }
+#evidence .evidence-media picture,
+#evidence .evidence-media img{
+  display:block; max-width:640px; width:100%; height:auto;
+  border-radius:var(--radius); box-shadow: var(--shadow-md); margin-inline:auto;
+}
+.surface{
+  background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+}
+.eyebrow{
+  display:inline-block; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--primary); background:var(--accent);
+  padding:.25rem .5rem; border-radius:999px; margin-bottom:.5rem;
+}
+.list-check{ list-style:none; margin:0; padding:0; display:grid; gap:.6rem; }
+.list-check li{ position:relative; padding-left:1.7rem; color:var(--text); }
+.list-check li::before{
+  content:""; position:absolute; left:0; top:.2rem; width:1rem; height:1rem; border-radius:999px;
+  background:var(--accent); box-shadow: inset 0 0 0 2px rgba(35,68,58,.15);
+}
+.list-check li::after{
+  content:""; position:absolute; left:.26rem; top:.46rem; width:.5rem; height:.28rem;
+  border-left:2px solid var(--primary); border-bottom:2px solid var(--primary); transform:rotate(-45deg);
+}
+@media (min-width: 960px){
+  #evidence .evidence{ grid-template-columns: 1.05fr 1fr; gap:2.25rem; }
+  #evidence .evidence-copy{ align-self:center; }
+}
+
+/* ---------- Estimate Clarity ---------- */
+#estimate-clarity .media-block{ margin: var(--space-5) 0; }
+#estimate-clarity .media-block picture,
+#estimate-clarity .media-block img{
+  display:block; max-width:640px; width:100%; height:auto;
+  border-radius:var(--radius); box-shadow: var(--shadow-md); margin-inline:auto;
+}
+#estimate-clarity .bullets{
+  list-style:none; margin: var(--space-4) 0 0; padding:0; display:grid; gap:.6rem; color:var(--text);
+}
+#estimate-clarity .bullets li{ position:relative; padding-left:1.2rem; }
+#estimate-clarity .bullets li::before{
+  content:"•"; position:absolute; left:0; top:0; color:var(--primary); font-weight:700;
+}
+
+/* ---------- FAQ ---------- */
+#faq details{
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:#fff; margin-bottom: var(--space-3); box-shadow: var(--shadow-sm);
+}
+#faq summary{ cursor:pointer; padding: var(--space-4); font-weight:600; list-style:none; }
+#faq summary::-webkit-details-marker{ display:none; }
+#faq details[open] summary{ border-bottom:1px solid var(--border); }
+#faq details > p{ padding: 0 var(--space-4) var(--space-4); margin:0; color:var(--text-muted); }
+
+/* ---------- CTA ---------- */
+.cta{ text-align:center; }
+.cta .btn{ margin-top: var(--space-3); }
+
+/* ---------- Utilities ---------- */
+.round{ border-radius: var(--radius); }
+.shadow-sm{ box-shadow: var(--shadow-sm); }
+.shadow-md{ box-shadow: var(--shadow-md); }
+
+/* ---------- Print ---------- */
+@media print{
+  .site-nav,.hero{ display:none !important; }
+  .section{ padding-block: 1rem; }
+  a[href]:after{ content:" (" attr(href) ")"; font-size:.9em; }
+}
