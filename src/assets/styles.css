@@ -407,3 +407,14 @@ section[id], h2[id], h3[id] {
   scroll-margin-top: calc(var(--header-height, 120px) + 16px);
 }
 html { scroll-behavior: smooth; }
+
+/* Keep content images from blowing out layout */
+main picture, 
+main picture img {
+  max-width: 640px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-inline: auto; /* center */
+}
+
