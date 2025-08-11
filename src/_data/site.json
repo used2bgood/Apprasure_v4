@@ -1,11 +1,9 @@
 {
-  "title": "AppraSure | Appraisal Services",
+  "title": "AppraSure",
   "description": "Clear resolutions for complex disputes.",
   "url": "https://apprasure-website.pages.dev",
-  "logo": "/assets/apple-touch-icon.png",
+  "logo": "/assets/apprasure-transparent.png",
   "email": "info@apprasure.com",
   "phone": "(469) 905-0505",
-  "location": "Lewisville, TX",
-  "linkedin": "#",
-  "instagram": "#"
+  "location": "Lewisville, TX"
 }
